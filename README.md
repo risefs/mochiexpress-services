@@ -77,7 +77,8 @@ GRANT ALL ON ALL SEQUENCES IN SCHEMA web_app TO service_role;
 
 ```bash
 # Development
-npm run start:dev        # Start in watch mode
+npm run start:dev        # Start in watch mode - here we are going to using staging enviroment(depends on yours .env)
+npm run dev:local        #here we are going to using emulators enviroment (depends on yours .env.local)
 npm run start:debug      # Start in debug mode
 
 # Production
