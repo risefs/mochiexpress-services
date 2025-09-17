@@ -13,7 +13,7 @@ class EnvironmentVariables {
 
   @IsString()
   @IsNotEmpty()
-  SUPABASE_KEY!: string;
+  SUPABASE_SERVICE_ROLE!: string;
 
   @IsOptional()
   @IsString()

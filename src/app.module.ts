@@ -11,7 +11,7 @@ import { validateConfig } from './config/config.validation';
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validateConfig,
-      envFilePath: '.env',
+      envFilePath: process.env.ENV_FILE || '.env',
     }),
     SupabaseModule,
     UsersModule,
