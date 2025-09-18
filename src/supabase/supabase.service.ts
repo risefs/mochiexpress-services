@@ -9,11 +9,11 @@ export class SupabaseService {
 
   constructor(private configService: ConfigService) {
     const supabaseUrl = this.configService.get<string>('SUPABASE_URL');
-    const supabaseKey = this.configService.get<string>('SUPABASE_KEY');
+    const supabaseKey = this.configService.get<string>('SUPABASE_SERVICE_ROLE');
 
     if (!supabaseUrl || !supabaseKey) {
       throw new Error(
-        '❌ Missing Supabase configuration. Please check SUPABASE_URL and SUPABASE_KEY environment variables.',
+        '❌ Missing Supabase configuration. Please check SUPABASE_URL and SUPABASE_SERVICE_ROLE environment variables.',
       );
     }
 

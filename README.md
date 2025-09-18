@@ -43,7 +43,7 @@ cp env.example .env
 NODE_ENV=development
 PORT=3000
 SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_KEY=your-supabase-service-role-key
+SUPABASE_SERVICE_ROLE=your-supabase-service-role-key
 ```
 
 ## Database Setup
@@ -77,7 +77,11 @@ GRANT ALL ON ALL SEQUENCES IN SCHEMA web_app TO service_role;
 
 ```bash
 # Development
-npm run start:dev        # Start in watch mode
+npm run start:dev        # Start in watch mode - here we are going to using staging enviroment(depends on yours .env)
+
+npm run dev #here we are going to use .env (directly supabase remote environment)
+
+npm run dev:local        #here we are going to using emulators enviroment (depends on yours .env.local)
 npm run start:debug      # Start in debug mode
 
 # Production
@@ -116,7 +120,7 @@ When running in development mode, visit:
 | `NODE_ENV` | No | Environment (development/production) |
 | `PORT` | No | Server port (default: 3000) |
 | `SUPABASE_URL` | Yes | Your Supabase project URL |
-| `SUPABASE_KEY` | Yes | Your Supabase service_role key (for backend APIs) |
+| `SUPABASE_SERVICE_ROLE` | Yes | Your Supabase service_role key (for backend APIs) |
 
 ## Project Structure
 
