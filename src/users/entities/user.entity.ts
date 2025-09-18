@@ -1,10 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsNotEmpty,
+  IsString,
+  IsEmail,
+  IsOptional,
+  IsUUID,
+} from 'class-validator';
 
 export class User {
   @ApiProperty({
     description: 'Unique identifier for the user',
     example: '550e8400-e29b-41d4-a716-446655440000',
   })
+  @IsNotEmpty()
+  @IsUUID()
   id!: string;
 
   @ApiProperty({
@@ -12,6 +21,8 @@ export class User {
     example: 'John',
     required: false,
   })
+  @IsString()
+  @IsOptional()
   first_name?: string;
 
   @ApiProperty({
@@ -19,6 +30,8 @@ export class User {
     example: 'Doe',
     required: false,
   })
+  @IsString()
+  @IsOptional()
   last_name?: string;
 
   @ApiProperty({
@@ -26,6 +39,9 @@ export class User {
     example: 'user@example.com',
     required: false,
   })
+  @IsEmail()
+  @IsString()
+  @IsOptional()
   email?: string;
 
   @ApiProperty({
@@ -33,6 +49,7 @@ export class User {
     example: '2024-01-01T00:00:00.000Z',
     required: false,
   })
+  @IsOptional()
   created_at?: string;
 
   @ApiProperty({
