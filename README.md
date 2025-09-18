@@ -222,3 +222,13 @@ npm run start:prod
 2. Add tests for new features
 3. Update documentation as needed
 4. Run linting and tests before committing
+
+
+## Emulator
+
+- API URL: http://127.0.0.1:54321
+- GraphQL URL: http://127.0.0.1:54321/graphql/v1
+- S3 Storage URL: http://127.0.0.1:54321/storage/v1/s3
+- DB URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+- Studio URL: http://127.0.0.1:54323
+- Inbucket URL: http://127.0.0.1:54324
