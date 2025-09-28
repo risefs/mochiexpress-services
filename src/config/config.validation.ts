@@ -1,19 +1,28 @@
 import { plainToClass } from 'class-transformer';
 import {
   IsString,
-  IsNotEmpty,
+  // IsNotEmpty,
   IsOptional,
   validateSync,
+  IsNotEmpty,
 } from 'class-validator';
 
 class EnvironmentVariables {
   @IsString()
   @IsNotEmpty()
-  SUPABASE_URL!: string;
+  DATABASE_PORT!: string;
 
   @IsString()
   @IsNotEmpty()
-  SUPABASE_SERVICE_ROLE!: string;
+  DATABASE_USERNAME!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_PASSWORD!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_NAME!: string;
 
   @IsOptional()
   @IsString()

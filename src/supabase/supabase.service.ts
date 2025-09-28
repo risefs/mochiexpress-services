@@ -1,38 +1,38 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+// import { Injectable, Logger } from '@nestjs/common';
+// import { ConfigService } from '@nestjs/config';
+// import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-@Injectable()
-export class SupabaseService {
-  private readonly logger = new Logger(SupabaseService.name);
-  private readonly supabaseClient: SupabaseClient;
+// @Injectable()
+// export class SupabaseService {
+//   private readonly logger = new Logger(SupabaseService.name);
+//   private readonly supabaseClient: SupabaseClient;
 
-  constructor(private configService: ConfigService) {
-    const supabaseUrl = this.configService.get<string>('SUPABASE_URL');
-    const supabaseKey = this.configService.get<string>('SUPABASE_SERVICE_ROLE');
+//   constructor(private configService: ConfigService) {
+//     const supabaseUrl = this.configService.get<string>('SUPABASE_URL');
+//     const supabaseKey = this.configService.get<string>('SUPABASE_SERVICE_ROLE');
 
-    if (!supabaseUrl || !supabaseKey) {
-      throw new Error(
-        '❌ Missing Supabase configuration. Please check SUPABASE_URL and SUPABASE_SERVICE_ROLE environment variables.',
-      );
-    }
+//     if (!supabaseUrl || !supabaseKey) {
+//       throw new Error(
+//         '❌ Missing Supabase configuration. Please check SUPABASE_URL and SUPABASE_SERVICE_ROLE environment variables.',
+//       );
+//     }
 
-    this.supabaseClient = createClient(supabaseUrl, supabaseKey, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-      },
-      global: {
-        headers: {
-          'X-Client-Info': 'mochiexpress-services',
-        },
-      },
-    });
+//     this.supabaseClient = createClient(supabaseUrl, supabaseKey, {
+//       auth: {
+//         persistSession: false,
+//         autoRefreshToken: false,
+//       },
+//       global: {
+//         headers: {
+//           'X-Client-Info': 'mochiexpress-services',
+//         },
+//       },
+//     });
 
-    this.logger.log('✅ Supabase client initialized successfully');
-  }
+//     this.logger.log('✅ Supabase client initialized successfully');
+//   }
 
-  getClient(): SupabaseClient {
-    return this.supabaseClient;
-  }
-}
+//   getClient(): SupabaseClient {
+//     return this.supabaseClient;
+//   }
+// }

@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SupabaseModule } from './supabase/supabase.module';
-import { UsersModule } from './users/users.module';
+// import { SupabaseModule } from './supabase/supabase.module';
+import { UsersModule } from './users/user.module';
 import { validateConfig } from './config/config.validation';
+import { CountryModule } from './country/country.module';
 
 @Module({
   imports: [
@@ -13,8 +14,9 @@ import { validateConfig } from './config/config.validation';
       validate: validateConfig,
       envFilePath: process.env.ENV_FILE || '.env',
     }),
-    SupabaseModule,
+    // SupabaseModule,
     UsersModule,
+    CountryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
