@@ -14,6 +14,12 @@ export class CreateRolesTable1759197341233 implements MigrationInterface {
             CONSTRAINT "roles_name_check" CHECK ("name" = ANY (ARRAY['buyer'::text, 'traveler'::text]))
           )
         `);
+    await queryRunner.query(`
+          INSERT INTO "web_app"."roles" ("name", "description") VALUES 
+            ('buyer', 'Usuario que puede crear pedidos de productos'),
+            ('traveler', 'Usuario que puede llevar productos en sus viajes')
+          ON CONFLICT ("name") DO NOTHING
+        `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

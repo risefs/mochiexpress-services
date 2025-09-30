@@ -7,7 +7,7 @@ export class CreateGrabsTable1759197741350 implements MigrationInterface {
     await queryRunner.query(`
           CREATE TABLE IF NOT EXISTS "web_app"."grabs" (
             "id" uuid DEFAULT gen_random_uuid() NOT NULL,
-            "buyer_id" uuid,
+            "user_id" uuid,
             "product_url" text NOT NULL,
             "product_title" text NOT NULL,
             "price_estimated" numeric(10,2),
@@ -21,7 +21,7 @@ export class CreateGrabsTable1759197741350 implements MigrationInterface {
             "product_image" text,
             "created_at" timestamp with time zone DEFAULT now(),
             CONSTRAINT "grabs_pkey" PRIMARY KEY ("id"),
-            CONSTRAINT "grabs_buyer_id_fkey" FOREIGN KEY ("buyer_id") REFERENCES "auth"."users"("id") ON DELETE CASCADE,
+            CONSTRAINT "grabs_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "auth"."users"("id") ON DELETE CASCADE,
             CONSTRAINT "grabs_country_origin_id_fkey" FOREIGN KEY ("country_origin_id") REFERENCES "web_app"."countries"("id"),
             CONSTRAINT "grabs_country_destination_id_fkey" FOREIGN KEY ("country_destination_id") REFERENCES "web_app"."countries"("id")
           )
