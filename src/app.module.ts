@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { UsersModule } from './users/users.module';
 import { validateConfig } from './config/config.validation';
+import { GrabsModule } from './grabs/grabs.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { validateConfig } from './config/config.validation';
     }),
     SupabaseModule,
     UsersModule,
+    GrabsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
