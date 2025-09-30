@@ -49,13 +49,13 @@ export class SeedAuthUsers1759237300000 implements MigrationInterface {
           now(), 
           null, 
           null, 
-          null, 
-          null, 
-          null, 
-          null, 
+          '', 
+          '', 
+          '', 
+          '', 
           0, 
           null, 
-          null, 
+          '', 
           null
         ),
         (
@@ -75,13 +75,13 @@ export class SeedAuthUsers1759237300000 implements MigrationInterface {
           now(), 
           null, 
           null, 
-          null, 
-          null, 
-          null, 
-          null, 
+          '', 
+          '', 
+          '', 
+          '', 
           0, 
           null, 
-          null, 
+          '', 
           null
         )
       ON CONFLICT (id) DO NOTHING

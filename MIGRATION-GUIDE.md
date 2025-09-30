@@ -149,6 +149,22 @@ git commit -m "feat: add table_name migration"
 
 ## 🆘 Troubleshooting
 
+### Problema: Storage container failing (Migration not found)
+Error: `Migration fix-prefix-race-conditions-optimized not found`
+
+```bash
+# Solución: Actualizar Supabase CLI
+brew upgrade supabase
+
+# Verificar versión (debe ser >= 2.47.0)
+supabase --version
+
+# Reiniciar desde cero
+supabase stop --no-backup
+supabase start
+yarn migration:run:local
+```
+
 ### Problema: "Migration already executed"
 ```bash
 # Ver estado
