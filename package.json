@@ -32,7 +32,8 @@
     "migration:create:local": "ENV_FILE=.env.local npx typeorm-ts-node-commonjs migration:create",
     "migration:run:local": "ENV_FILE=.env.local npx typeorm-ts-node-commonjs migration:run -d ormconfig.ts",
     "migration:revert:local": "ENV_FILE=.env.local npx typeorm-ts-node-commonjs migration:revert -d ormconfig.ts",
-    "migration:show:local": "ENV_FILE=.env.local npx typeorm-ts-node-commonjs migration:show -d ormconfig.ts"
+    "migration:show:local": "ENV_FILE=.env.local npx typeorm-ts-node-commonjs migration:show -d ormconfig.ts",
+    "reset:all": "npx supabase db reset && npm run migration:run:local"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

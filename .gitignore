@@ -88,3 +88,10 @@ Thumbs.db
 # Temporary folders
 tmp/
 temp/
+
+# Supabase temporary files
+supabase/.temp/
+
+# Database backups
+backup_*.sql
+*.backup.sql
