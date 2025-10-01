@@ -24,7 +24,10 @@ async function bootstrap() {
 
   // CORS configuration
   app.enableCors({
-    origin: process.env.NODE_ENV === 'production' ? false : true,
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? ['https://tu-frontend.vercel.app', 'https://tu-dominio.com'] // Agrega tus dominios permitidos
+        : true,
     credentials: true,
   });
 
@@ -43,7 +46,7 @@ async function bootstrap() {
   }
 
   const port = process.env.PORT || 4000;
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
 
   console.log(`🚀 Application is running on: http://localhost:${port}`);
   console.log(`📚 API documentation: http://localhost:${port}/api/docs`);
