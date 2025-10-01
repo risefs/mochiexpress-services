@@ -8,6 +8,7 @@ import { validateConfig } from './config/config.validation';
 import { GrabsModule } from './grabs/grabs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getTypeOrmConfig } from './config/typeorm.config';
+import { CountriesModule } from './countries/countries.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { getTypeOrmConfig } from './config/typeorm.config';
     SupabaseModule,
     UsersModule,
     GrabsModule,
+    CountriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
