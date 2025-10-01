@@ -33,7 +33,7 @@ export class SeedAuthUsers1759237300000 implements MigrationInterface {
       )
       VALUES
         (
-          'a1b2c3d4-1111-2222-3333-444455556666', 
+          '123e4567-e89b-42d3-a456-426614174000', 
           '00000000-0000-0000-0000-000000000000', 
           'authenticated', 
           'authenticated', 
@@ -59,7 +59,7 @@ export class SeedAuthUsers1759237300000 implements MigrationInterface {
           null
         ),
         (
-          'b2c3d4e5-7777-8888-9999-aaaabbbbcccc', 
+          '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d', 
           '00000000-0000-0000-0000-000000000000', 
           'authenticated', 
           'authenticated', 
@@ -92,10 +92,9 @@ export class SeedAuthUsers1759237300000 implements MigrationInterface {
     await queryRunner.query(`
       DELETE FROM auth.users 
       WHERE id IN (
-        'a1b2c3d4-1111-2222-3333-444455556666',
+        '123e4567-e89b-42d3-a456-426614174000',
         'b2c3d4e5-7777-8888-9999-aaaabbbbcccc'
       )
     `);
   }
 }
-
