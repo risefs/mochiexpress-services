@@ -2,6 +2,11 @@
 
 Backend services for MochiExpress built with NestJS and Supabase.
 
+## 📚 Documentation
+
+- **[Migration Guide](MIGRATION-GUIDE.md)** - Complete guide for database migrations (local & remote)
+- **[Migration Cheatsheet](MIGRATION-CHEATSHEET.md)** - Quick reference for common migration tasks
+
 ## Features
 
 - ✅ **NestJS Framework** - Latest stable version with TypeScript

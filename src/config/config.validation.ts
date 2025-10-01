@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   IsOptional,
   validateSync,
+  IsNumberString,
 } from 'class-validator';
 
 class EnvironmentVariables {
@@ -14,6 +15,27 @@ class EnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   SUPABASE_SERVICE_ROLE!: string;
+
+  // TypeORM Database Configuration
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_HOST!: string;
+
+  @IsNumberString()
+  @IsNotEmpty()
+  DATABASE_PORT!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_USERNAME!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_PASSWORD!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_NAME!: string;
 
   @IsOptional()
   @IsString()
