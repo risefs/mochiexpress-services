@@ -26,7 +26,7 @@ async function bootstrap() {
   app.enableCors({
     origin:
       process.env.NODE_ENV === 'production'
-        ? ['https://tu-frontend.vercel.app', 'https://tu-dominio.com'] // Agrega tus dominios permitidos
+        ? ['https://tu-frontend.vercel.app', 'http://localhost:3000'] // Agrega tus dominios permitidos
         : true,
     credentials: true,
   });
