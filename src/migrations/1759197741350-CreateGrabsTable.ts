@@ -26,6 +26,11 @@ export class CreateGrabsTable1759197741350 implements MigrationInterface {
             CONSTRAINT "grabs_country_destination_id_fkey" FOREIGN KEY ("country_destination_id") REFERENCES "web_app"."countries"("id")
           )
         `);
+
+    await queryRunner.query(`
+          GRANT SELECT ON "web_app"."grabs" TO "anon";
+          GRANT SELECT ON "web_app"."grabs" TO "authenticated"
+        `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

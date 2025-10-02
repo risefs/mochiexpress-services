@@ -82,28 +82,26 @@ GRANT ALL ON ALL SEQUENCES IN SCHEMA web_app TO service_role;
 
 ```bash
 # Development
-npm run start:dev        # Start in watch mode - here we are going to using staging enviroment(depends on yours .env)
+yarn start:dev        # Start in watch mode (uses your .env for staging)
+yarn dev              # Uses .env (direct Supabase remote environment)
 
-npm run dev #here we are going to use .env (directly supabase remote environment)
-
-npm run dev:local        #here we are going to using emulators enviroment (depends on yours .env.local)
-npm run start:debug      # Start in debug mode
+yarn dev:local        # Uses emulator environment (.env.local), NOTE: you must to have Docker and supabase up.
+yarn start:debug      # Start in debug mode
 
 # Production
-npm run build           # Build the application
-npm run start          # Start in normal mode
-npm run start:prod     # Start compiled application
+yarn build            # Build the application
+yarn start            # Start in normal mode
+yarn start:prod       # Start compiled application
 
 # Code Quality
-npm run lint           # Run ESLint
-npm run format         # Format code with Prettier
+yarn lint             # Run ESLint
+yarn format           # Format code with Prettier
 
 # Testing
-npm run test           # Run unit tests
-npm run test:watch     # Run tests in watch mode
-npm run test:cov       # Run tests with coverage
-npm run test:e2e       # Run end-to-end tests
-```
+yarn test             # Run unit tests
+yarn test:watch       # Run tests in watch mode
+yarn test:cov         # Run tests with coverage
+yarn test:e2e         # Run end-to-end tests
 
 ## API Endpoints
 

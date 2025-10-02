@@ -25,6 +25,11 @@ export class CreateCountriesTable1759194051312 implements MigrationInterface {
     `);
 
     await queryRunner.query(`
+      GRANT SELECT ON "web_app"."countries" TO "anon";
+      GRANT SELECT ON "web_app"."countries" TO "authenticated"
+    `);
+
+    await queryRunner.query(`
         INSERT INTO "web_app"."countries" (id, iso_code, name, continent, currency_code, flag_emoji, phone_code, flag_image_url, created_at)
         VALUES 
           ('aaf80eef-b0e0-45d8-8436-c2a3806399a4', 'US', 'Estados Unidos', 'América', 'USD', '🇺🇸', '+1', 'https://flagcdn.com/w80/{code}.png', '2025-05-09 15:07:38.239242+00'),
