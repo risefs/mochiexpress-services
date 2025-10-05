@@ -3,3 +3,4 @@ alwaysApply: true
 ---
 
 - Use yarn when you give me commands in your solutions
+- When an migration is created , apply next grants :  GRANT SELECT ON "web_app"."grabs" TO "anon", GRANT SELECT ON "web_app"."grabs" TO "authenticated"
