@@ -15,7 +15,6 @@ export class GrabsService {
       // Process the grab data
       const processedGrabDto = await this.processGrabData(createGrabDto);
 
-      console.log('processedGrabDto', processedGrabDto);
       const { data, error } = await this.supabaseService
         .getClient()
         .schema('web_app')
@@ -62,7 +61,9 @@ export class GrabsService {
           const imageUrl = await this.supabaseService.uploadImage(
             createGrabDto.product_image,
           );
-          processedDto.product_image = imageUrl;
+          // just take name from imageUrl
+          const imageName = imageUrl.split('/').pop();
+          processedDto.product_image = imageName;
 
           this.logger.debug(`Product image uploaded successfully: ${imageUrl}`);
         } catch (error) {
