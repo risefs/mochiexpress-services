@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('taxes', { schema: 'web_app' })
-export class Tax {
+@Entity('tax_configurations', { schema: 'web_app' })
+export class TaxConfiguration {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
@@ -41,3 +41,4 @@ export class Tax {
   @UpdateDateColumn({ type: 'timestamp', default: () => 'NOW()' })
   updated_at!: Date;
 }
+

@@ -7,7 +7,7 @@ import {
   IsUUID,
 } from 'class-validator';
 
-export class CreateTaxDto {
+export class CreateTaxConfigurationDto {
   @IsUUID()
   @IsNotEmpty()
   country_id!: string;
@@ -40,3 +40,4 @@ export class CreateTaxDto {
   @IsOptional()
   valid_until!: string;
 }
+

@@ -9,7 +9,7 @@ import { GrabsModule } from './grabs/grabs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getTypeOrmConfig } from './config/typeorm.config';
 import { CountriesModule } from './countries/countries.module';
-import { TaxesModule } from './taxes/taxes.module';
+import { TaxConfigurationsModule } from './tax-configurations/tax-configurations.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { TaxesModule } from './taxes/taxes.module';
     UsersModule,
     GrabsModule,
     CountriesModule,
-    TaxesModule,
+    TaxConfigurationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
