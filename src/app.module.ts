@@ -10,6 +10,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getTypeOrmConfig } from './config/typeorm.config';
 import { CountriesModule } from './countries/countries.module';
 import { TaxConfigurationsModule } from './tax-configurations/tax-configurations.module';
+import { FeeConfigurationsModule } from './fee-configurations/fee-configurations.module';
+import { PaymentConfigurationsModule } from './payment-configurations/payment-configurations.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { TaxConfigurationsModule } from './tax-configurations/tax-configurations
     GrabsModule,
     CountriesModule,
     TaxConfigurationsModule,
+    FeeConfigurationsModule,
+    PaymentConfigurationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
