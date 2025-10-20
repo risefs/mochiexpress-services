@@ -12,6 +12,7 @@ import { CountriesModule } from './countries/countries.module';
 import { TaxConfigurationsModule } from './tax-configurations/tax-configurations.module';
 import { FeeConfigurationsModule } from './fee-configurations/fee-configurations.module';
 import { PaymentConfigurationsModule } from './payment-configurations/payment-configurations.module';
+import { PricingModule } from './pricing/pricing.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PaymentConfigurationsModule } from './payment-configurations/payment-co
     TaxConfigurationsModule,
     FeeConfigurationsModule,
     PaymentConfigurationsModule,
+    PricingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

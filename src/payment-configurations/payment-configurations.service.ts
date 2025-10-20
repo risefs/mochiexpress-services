@@ -1,5 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { SupabaseService } from '../supabase/supabase.service';
+import { PaymentConfiguration } from './entities/payment-configurations';
+import { PaymentProcessingDetailsDto } from '@/pricing/dto/price-breakdown.dto';
+import { roundToTwoDecimals } from '@/common/utils/math.utils';
 
 @Injectable()
 export class PaymentConfigurationsService {
@@ -34,5 +37,53 @@ export class PaymentConfigurationsService {
       throw error;
     }
   }
-}
 
+  async findByCountryId(
+    countryId: string,
+  ): Promise<PaymentConfiguration | null> {
+    try {
+      const { data, error } = await this.supabaseService
+        .getClient()
+        .schema('web_app')
+        .from('payment_configurations')
+        .select('*')
+        .eq('country_id', countryId);
+      if (error) {
+        this.logger.error('Supabase query error:', error);
+        throw new Error(`Database query failed: ${error.message}`);
+      }
+
+      return data?.[0] as PaymentConfiguration | null;
+    } catch (error) {
+      this.logger.error('Error in findByCountryId method:', error);
+      throw error;
+    }
+  }
+
+  async calculatePaymentProcessing(
+    productPrice: number,
+    countryId: string,
+  ): Promise<PaymentProcessingDetailsDto> {
+    try {
+      const paymentConfig = await this.findByCountryId(countryId);
+      if (!paymentConfig) {
+        throw new NotFoundException(
+          `Payment configuration not found for country: ${countryId}`,
+        );
+      }
+      const amount = roundToTwoDecimals(
+        productPrice * parseFloat(paymentConfig.percentage_fee || '0'),
+      );
+      return {
+        amount: amount,
+        fixedFee: parseFloat(paymentConfig.fixed_fee || '0'),
+        percentageFee: parseFloat(paymentConfig.percentage_fee || '0'),
+        provider: paymentConfig.provider,
+        configId: paymentConfig.id || '',
+      };
+    } catch (error) {
+      this.logger.error('Error in calculatePaymentProcessing method:', error);
+      throw error;
+    }
+  }
+}

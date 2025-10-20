@@ -41,4 +41,3 @@ export class TaxConfiguration {
   @UpdateDateColumn({ type: 'timestamp', default: () => 'NOW()' })
   updated_at!: Date;
 }
-

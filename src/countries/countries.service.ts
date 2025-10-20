@@ -30,4 +30,25 @@ export class CountriesService {
       throw error;
     }
   }
+
+  async findByIsoCode(isoCode: string): Promise<Country | null> {
+    try {
+      const { data, error } = await this.supabaseService
+        .getClient()
+        .schema('web_app')
+        .from('countries')
+        .select('*')
+        .eq('iso_code', isoCode);
+
+      if (error) {
+        this.logger.error('Supabase query error:', error);
+        throw new Error(`Database query failed: ${error.message}`);
+      }
+
+      return data?.[0] as Country;
+    } catch (error) {
+      this.logger.error('Error in findByIsoCode method:', error);
+      throw error;
+    }
+  }
 }
