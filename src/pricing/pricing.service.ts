@@ -67,10 +67,8 @@ export class PricingService {
       const paymentProcessingResult =
         await this.paymentConfigurationsService.calculatePaymentProcessing(
           subtotal,
-          country.id,
+          paymentProvider,
         );
-
-      console.log('paymentProcessingResult', paymentProcessingResult);
 
       const breakdown: PriceBreakdownDto = {
         productPrice: dto.productPrice,
@@ -103,7 +101,7 @@ export class PricingService {
         },
         subtotal,
         total: subtotal + paymentProcessingResult.amount,
-        currency: 'USD',
+        currency: 'USD', // TODO: Get currency from country
         countryCode,
         calculatedAt: new Date().toISOString(),
       };

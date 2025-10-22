@@ -82,8 +82,37 @@ export class FeeConfigurationsService {
           `Fee configuration not found for country: ${countryId}`,
         );
       }
-      const travelerReward = roundToTwoDecimals(
-        productPrice * parseFloat(data.fee_rate || '0'),
+
+      let amount = 0;
+
+      switch (data.calculation_method) {
+        case 'percentage':
+          amount = productPrice * parseFloat(data.fee_rate || '0');
+          break;
+
+        case 'fixed':
+          amount = parseFloat(data.fixed_amount || '0');
+          break;
+
+        case 'percentage_plus_fixed':
+          amount =
+            productPrice * parseFloat(data.fee_rate || '0') +
+            parseFloat(data.fixed_amount || '0');
+          break;
+      }
+
+      // Apply limits
+      if (data.min_amount) {
+        amount = Math.max(amount, parseFloat(data.min_amount));
+      }
+      if (data.max_amount) {
+        amount = Math.min(amount, parseFloat(data.max_amount));
+      }
+
+      const travelerReward = roundToTwoDecimals(amount);
+
+      this.logger.debug(
+        `Traveler reward calculated: $${productPrice} * ${data.fee_rate || '0'} = $${travelerReward} (${data.fee_type})`,
       );
 
       return {
@@ -123,9 +152,33 @@ export class FeeConfigurationsService {
           `Fee configuration not found for country: ${countryId}`,
         );
       }
-      const platformFee = roundToTwoDecimals(
-        productPrice * parseFloat(data.fee_rate || '0'),
+
+      let amount = 0;
+
+      switch (data.calculation_method) {
+        case 'percentage':
+          amount = productPrice * parseFloat(data.fee_rate || '0');
+          break;
+
+        case 'fixed':
+          amount = parseFloat(data.fixed_amount || '0');
+          break;
+      }
+
+      // Apply limits
+      if (data.min_amount) {
+        amount = Math.max(amount, parseFloat(data.min_amount));
+      }
+      if (data.max_amount) {
+        amount = Math.min(amount, parseFloat(data.max_amount));
+      }
+
+      const platformFee = roundToTwoDecimals(amount);
+
+      this.logger.debug(
+        `Platform fee calculated: $${productPrice} * ${data.fee_rate || '0'} = $${platformFee} (${data.fee_type})`,
       );
+
       return {
         amount: platformFee,
         rate: parseFloat(data.fee_rate || '0'),

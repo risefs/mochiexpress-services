@@ -60,15 +60,36 @@ export class PaymentConfigurationsService {
     }
   }
 
+  async findByProvider(provider: string): Promise<PaymentConfiguration | null> {
+    try {
+      const { data, error } = await this.supabaseService
+        .getClient()
+        .schema('web_app')
+        .from('payment_configurations')
+        .select('*')
+        .eq('provider', provider)
+        .maybeSingle();
+      if (error) {
+        this.logger.error('Supabase query error:', error);
+        throw new Error(`Database query failed: ${error.message}`);
+      }
+
+      return data as PaymentConfiguration | null;
+    } catch (error) {
+      this.logger.error('Error in findByProvider method:', error);
+      throw error;
+    }
+  }
+
   async calculatePaymentProcessing(
     productPrice: number,
-    countryId: string,
+    provider: string,
   ): Promise<PaymentProcessingDetailsDto> {
     try {
-      const paymentConfig = await this.findByCountryId(countryId);
+      const paymentConfig = await this.findByProvider(provider);
       if (!paymentConfig) {
         throw new NotFoundException(
-          `Payment configuration not found for country: ${countryId}`,
+          `Payment configuration not found for provider: ${provider}`,
         );
       }
       const amount = roundToTwoDecimals(
