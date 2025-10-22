@@ -9,6 +9,7 @@ import { GrabsModule } from './grabs/grabs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getTypeOrmConfig } from './config/typeorm.config';
 import { CountriesModule } from './countries/countries.module';
+import { ProductScraperModule } from './product-scraper/product-scraper.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CountriesModule } from './countries/countries.module';
     UsersModule,
     GrabsModule,
     CountriesModule,
+    ProductScraperModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -80,6 +80,12 @@ GRANT ALL ON ALL SEQUENCES IN SCHEMA web_app TO service_role;
 
 ## Available Scripts
 
+# First step
+
+```bash
+supabase start
+```
+
 ```bash
 # Development
 yarn start:dev        # Start in watch mode (uses your .env for staging)
