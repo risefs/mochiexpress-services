@@ -37,10 +37,15 @@ export class SupabaseService {
     return this.supabaseClient;
   }
 
-  async uploadImage(base64Image: string, bucketName: string = 'product-images'): Promise<string> {
+  async uploadImage(
+    base64Image: string,
+    bucketName: string = 'product-images',
+  ): Promise<string> {
     try {
       // Extract file extension from base64 data URI
-      const matches = base64Image.match(/^data:image\/([a-zA-Z+]+);base64,(.+)$/);
+      const matches = base64Image.match(
+        /^data:image\/([a-zA-Z+]+);base64,(.+)$/,
+      );
       if (!matches || matches.length !== 3) {
         throw new Error('Invalid base64 image format');
       }
@@ -48,7 +53,7 @@ export class SupabaseService {
       const fileExtension = matches[1];
       const base64Data = matches[2];
       const fileName = `${uuidv4()}.${fileExtension}`;
-      
+
       // Convert base64 to buffer
       const buffer = Buffer.from(base64Data, 'base64');
 
@@ -59,7 +64,7 @@ export class SupabaseService {
         .upload(fileName, buffer, {
           contentType: `image/${fileExtension}`,
           cacheControl: '3600',
-          upsert: false
+          upsert: false,
         });
 
       if (error) {
@@ -72,8 +77,10 @@ export class SupabaseService {
         .from(bucketName)
         .getPublicUrl(fileName);
 
-      this.logger.debug(`Image uploaded successfully: ${publicUrlData.publicUrl}`);
-      
+      this.logger.debug(
+        `Image uploaded successfully: ${publicUrlData.publicUrl}`,
+      );
+
       return publicUrlData.publicUrl;
     } catch (error) {
       this.logger.error('Error in uploadImage', error);
@@ -81,7 +88,10 @@ export class SupabaseService {
     }
   }
 
-  async deleteImage(imageUrl: string, bucketName: string = 'product-images'): Promise<void> {
+  async deleteImage(
+    imageUrl: string,
+    bucketName: string = 'product-images',
+  ): Promise<void> {
     try {
       // Extract filename from URL
       const fileName = imageUrl.split('/').pop();
